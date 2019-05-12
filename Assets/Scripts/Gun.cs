@@ -15,11 +15,9 @@ public class Gun : MonoBehaviour
 
     public LineRenderer m_BulletLineRenderer; // 총이 발사하는 궤적을 그리기 위한 라인 렌더러
 
-    public GameObject m_ImpactPrefab; // 총 맞은 장소에 생성할 이펙트 & 데칼 원본
-
     public Text m_AmmoText; // 총 옆 UI에 나타낼 텍스트
 
-    public int m_MaxAmmo = 10; // 탄창의 최대 탄약 갯수
+    public int m_MaxAmmo = 15; // 탄창의 최대 탄약 갯수
     public float m_TimeBetFire = 0.3f; // 발사와 발사 사이의 시간 간격
     public int m_Damage = 25;
     public float m_ReloadTime = 2.0f; // 리로드할때 걸리는 시간
@@ -76,11 +74,7 @@ public class Gun : MonoBehaviour
                 target.OnDamage(m_Damage); // 타겟에게 데미지 가함
             }
 
-            hitPosition = hit.point; // 충돌 위치 가져오기
-
-            GameObject decal = Instantiate(m_ImpactPrefab, hitPosition, Quaternion.LookRotation(hit.normal));
-            // 피탄 효과 게임 오브젝트를 복제 생성, 충돌 지점에, 충돌한 표면의 방향으로 생성
-            decal.transform.SetParent(hit.collider.transform);    
+            hitPosition = hit.point; // 충돌 위치 가져오기   
         }
 
         StartCoroutine(ShotEffect(hitPosition));

@@ -722,8 +722,6 @@ MonoBehaviour:
   m_ShotClip: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
   m_ReloadClip: {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   m_BulletLineRenderer: {fileID: 8635510225942955774}
-  m_ImpactPrefab: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
-    type: 3}
   m_AmmoText: {fileID: 1492421502}
   m_MaxAmmo: 13
   m_TimeBetFire: 0.3
