@@ -25,17 +25,19 @@ public class Gun : MonoBehaviour
 
     private enum State { Ready, Empty, Reloading }; // 총의 상태를 나타낼 변수
 
-    private State m_CurrentState = State.Empty; // 총의 현재 상태
+    private State m_CurrentState; // 총의 현재 상태
 
     private float m_LastFireTime; // 마지막으로 발사한 시간
-    private int m_CurrentAmmo = 0; // 현재 탄약 갯수
+    private int m_CurrentAmmo; // 현재 탄약 갯수
 
     private Target target;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_CurrentState = State.Empty; // 탄약이 빈 상태로 시작
+        m_CurrentState = State.Ready; // 탄약이 빈 상태로 시작
+        m_CurrentAmmo = 15;
+
         m_LastFireTime = 0; // 마지막으로 총을 쏜 시점을 초기화
 
         m_BulletLineRenderer.positionCount = 2; // 라인 렌더러가 사용할 정점을 두개로 지정
@@ -66,8 +68,9 @@ public class Gun : MonoBehaviour
         // 레이캐스트(시작지점, 방향, 충돌 정보 컨테이너, 사정거리)
         if(Physics.Raycast(m_FireTransform.position, m_FireTransform.forward, out hit, m_FireDistance))
         {
-            target = hit.collider.GetComponent<Target>();
-            //맞힌 상대에게 Target 컴포넌트가 있다면 불러옴
+            if(hit.collider.tag == "Enemy")
+                target = hit.collider.GetComponent<Target>();
+            //맞힌 상대의 태그가 Enemy라면 Target 컴포넌트 불러옴
 
             if(target != null) // Target 컴포넌트가 존재한다면
             {
