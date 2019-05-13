@@ -35,6 +35,7 @@ public class Target : MonoBehaviour
         if(hp <= 0)
         {
             Destroy(gameObject); // 타겟 삭제
+            Debug.Log("타겟 객체 수 : " + count);
 
         }
     }
@@ -48,7 +49,6 @@ public class Target : MonoBehaviour
             m_LastFireTime = Time.time; // 마지막으로 총을 쏜 시점이 현재 시점으로 갱신
 
             Shot();
-            Debug.Log("적이 발사");
         }
 
        // hpbar.value = (float)attri.hp / (float)attri.hpMax;
