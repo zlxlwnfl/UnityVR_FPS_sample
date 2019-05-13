@@ -20,5 +20,5 @@ MonoBehaviour:
   inputUpdateMode: 2
   poseUpdateMode: 8
   activateFirstActionSetOnStart: 1
-  editorAppKey: application.generated.unity.vr_fps_sample.exe
+  editorAppKey: application.generated.unity.unityvr_fps_sample.exe
   autoEnableVR: 1

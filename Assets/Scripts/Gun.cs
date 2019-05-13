@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
+    private int hp;
+
     public Animator m_Animator;
     public Transform m_FireTransform; // 총구 위치
     public ParticleSystem m_MuzzleFlashEffect; // 터지는 이펙트 애니메이션
@@ -31,6 +33,9 @@ public class Gun : MonoBehaviour
     private int m_CurrentAmmo; // 현재 탄약 갯수
 
     private Target target;
+    public Slider healthBarSlider;  //reference for slider
+    public Text gameOverText;   //reference for text
+    public bool isGameOver = false; //flag to see if game is over
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,8 @@ public class Gun : MonoBehaviour
 
         m_BulletLineRenderer.positionCount = 2; // 라인 렌더러가 사용할 정점을 두개로 지정
         m_BulletLineRenderer.enabled = false; // 라인 렌더러를 끔
+
+        gameOverText.enabled = false; //disable GameOver text on start
 
         UpdateUI(); // UI를 갱신
     }
@@ -153,5 +160,18 @@ public class Gun : MonoBehaviour
         m_CurrentState = State.Ready;
 
         UpdateUI();
+    }
+
+    public void OnDamage(int damage)
+    {
+        hp -= damage;
+
+        if (hp < 0)
+        {
+            Destroy(gameObject);
+            isGameOver = true;    //set game over to true
+            gameOverText.enabled = true; //enable GameOver text
+        }
+           
     }
 }
